@@ -1,0 +1,32 @@
+.main{
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: white;
+}
+body{
+    background-color: #efefef;
+}
+.btn-publish{
+    float: right;
+    margin-bottom: 15px;
+}
+.media-object{
+    width: 50px;
+    height: 50px;
+}
+.text-desc{
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
+/*
+这一项当时在profile.html文件中没有生效，于是在文件中style中添加效果
+.profile .section {
+    margin-top: 15px;
+}
+*/
+.community-menu{
+    color: #999;
+    font-size: 13px;
+}
