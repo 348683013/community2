@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE generatorConfiguration
+                PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+                "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+<context id="DB2Tables" targetRuntime="MyBatis3">
+
+    <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+    <jdbcConnection driverClass="org.h2.Driver"
+                    connectionURL="jdbc:h2:~/community"
+                    userId="sa"
+                    password="123">
+    </jdbcConnection>
+
+    <!--转化数据类型的，把Decimal和Numeric转化成BigDecimals-->
+    <javaTypeResolver>
+        <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+
+    <!--数据库实体类生成路经-->
+    <javaModelGenerator targetPackage="life.xiaonong.community.community.model" targetProject="src/main/java">
+        <property name="enableSubPackages" value="true"/>
+        <property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+
+    <!--sql.xml文件的生成路经-->
+    <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+        <property name="enableSubPackages" value="true"/>
+    </sqlMapGenerator>
+
+    <!--sql的mapper接口的生成路经-->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="life.xiaonong.community.community.mapper"
+                         targetProject="src/main/java">
+        <property name="enableSubPackages" value="true"/>
+    </javaClientGenerator>
+
+    <!--具体生成哪些数据库表对应的实体类-->
+    <table tableName="user" domainObjectName="User"></table>
+    <table tableName="question" domainObjectName="Question"></table>
+</context>
+</generatorConfiguration>
