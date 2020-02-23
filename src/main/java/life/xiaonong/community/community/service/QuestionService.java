@@ -4,6 +4,7 @@ import life.xiaonong.community.community.dto.PaginationDTO;
 import life.xiaonong.community.community.dto.QuestionDTO;
 import life.xiaonong.community.community.exception.CustomizeErrorCode;
 import life.xiaonong.community.community.exception.CustomizeException;
+import life.xiaonong.community.community.mapper.QuestionExtMapper;
 import life.xiaonong.community.community.mapper.QuestionMapper;
 import life.xiaonong.community.community.mapper.UserMapper;
 import life.xiaonong.community.community.model.Question;
@@ -26,6 +27,9 @@ public class QuestionService {
 
     @Autowired
     private QuestionMapper questionMapper;
+
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
     @Autowired
     private UserMapper userMapper;
@@ -146,5 +150,13 @@ public class QuestionService {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
+    }
+
+    //实现阅读数
+    public void incView(Integer id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }
