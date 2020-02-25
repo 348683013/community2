@@ -43,3 +43,17 @@ body{
     float: right;
     margin-bottom: 20px;
 }
+.comment-sp{
+    margin-top: 0;
+}
+.menu1{
+    color: #999999;
+    margin-top: 6px;
+}
+.menu1 .icon{
+    margin-right: 10px;
+    cursor: pointer;
+}
+.menu1 .icon:hover{
+    color: #499ef3;
+}
