@@ -1,18 +1,25 @@
 package life.xiaonong.community.community.service;
 
+import life.xiaonong.community.community.dto.CommentDTO;
 import life.xiaonong.community.community.enums.CommentTypeEnum;
 import life.xiaonong.community.community.exception.CustomizeErrorCode;
 import life.xiaonong.community.community.exception.CustomizeException;
 import life.xiaonong.community.community.mapper.CommentMapper;
 import life.xiaonong.community.community.mapper.QuestionExtMapper;
 import life.xiaonong.community.community.mapper.QuestionMapper;
-import life.xiaonong.community.community.model.Comment;
-import life.xiaonong.community.community.model.Question;
+import life.xiaonong.community.community.mapper.UserMapper;
+import life.xiaonong.community.community.model.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.xml.crypto.Data;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by zhouzhongzhong on 2020/2/24
@@ -27,6 +34,9 @@ public class CommentService {
 
     @Autowired
     private QuestionExtMapper questionExtMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Transactional
     public void insert(Comment comment) {
@@ -54,5 +64,40 @@ public class CommentService {
             question.setCommentCount(1);
             questionExtMapper.incCommentCount(question);
         }
+    }
+
+    public List<CommentDTO> ListByQuestionId(Long id) {
+        CommentExample commentExample = new CommentExample();
+        commentExample.createCriteria()
+                .andParentIdEqualTo(id)
+                .andTypeEqualTo(CommentTypeEnum.QUESTION.getType());
+        commentExample.setOrderByClause("gmt_create desc");
+        List<Comment> comments = commentMapper.selectByExample(commentExample);
+        if (comments.size() == 0) {
+            return new ArrayList<>();
+        }
+
+        //获取去重的评论人
+        Set<Long> commentators = comments.stream().map(comment -> comment.getCommentator()).collect(Collectors.toSet());
+        List<Long> userIds = new ArrayList<>();
+        userIds.addAll(commentators);
+
+        //获取评论人，并转换成Map
+        UserExample userExample = new UserExample();
+        userExample.createCriteria()
+                .andIdIn(userIds);
+        List<User> users = userMapper.selectByExample(userExample);
+
+        Map<Long, User> userMap = users.stream().collect(Collectors.toMap(user -> user.getId(), user -> user));
+
+        //转换comment为commentDTO
+        List<CommentDTO> commentDTOS = comments.stream().map(comment -> {
+            CommentDTO commentDTO = new CommentDTO();
+            BeanUtils.copyProperties(comment, commentDTO);
+            commentDTO.setUser(userMap.get(comment.getCommentator()));
+            return commentDTO;
+        }).collect(Collectors.toList());
+
+        return commentDTOS;
     }
 }

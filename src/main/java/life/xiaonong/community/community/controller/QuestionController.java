@@ -1,8 +1,8 @@
 package life.xiaonong.community.community.controller;
 
+import life.xiaonong.community.community.dto.CommentCreateDTO;
 import life.xiaonong.community.community.dto.CommentDTO;
 import life.xiaonong.community.community.dto.QuestionDTO;
-import life.xiaonong.community.community.mapper.QuestionMapper;
 import life.xiaonong.community.community.service.CommentService;
 import life.xiaonong.community.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +34,7 @@ public class QuestionController {
         //累加阅读数
         questionService.incView(id);
         model.addAttribute("question", questionDTO);
+        model.addAttribute("comments", comments);
         return "question";
     }
 }

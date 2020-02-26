@@ -1,59 +1,93 @@
-.main{
+.main {
     margin-top: 30px;
     margin-left: 50px;
     margin-right: 50px;
     background-color: white;
 }
-body{
+
+body {
     background-color: #efefef;
 }
-.btn-publish{
+
+.btn-publish {
     float: right;
     margin-bottom: 15px;
 }
-.media-object{
+
+.media-object {
     width: 50px;
     height: 50px;
 }
-.media-body{
+
+.media-body {
     padding-top: 18px;
 }
-.text-desc{
+
+.text-desc {
     font-size: 12px;
     font-weight: normal;
     color: #999;
 }
+
 /*
 这一项当时在profile.html文件中没有生效，于是在文件中style中添加效果
 .profile .section {
     margin-top: 15px;
 }
 */
-.community-menu{
+.community-menu {
+    display: block;
     color: #999;
     font-size: 13px;
+    margin-bottom: 15px;
 }
-.jumbotron{
+
+.jumbotron {
     margin: 50px;
 }
-.comment{
+
+.comment {
     margin: 10px 0 10px 0;
 }
-.btn-comment{
+
+.btn-comment {
     float: right;
     margin-bottom: 20px;
 }
-.comment-sp{
+
+.comment-sp {
     margin-top: 0;
 }
-.menu1{
+
+.menu1 {
     color: #999999;
     margin-top: 6px;
 }
-.menu1 .icon{
+
+.menu1 .icon {
     margin-right: 10px;
     cursor: pointer;
 }
-.menu1 .icon:hover{
+
+.menu1 .icon:hover {
     color: #499ef3;
+}
+
+.comments {
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.question-title{
+    margin-top: 25px;
+}
+
+.index-question-title{
+    margin-top: -7px;
+}
+
+.index-question-last{
+    margin-top: 3px;
+    margin-bottom: -1px;
 }
