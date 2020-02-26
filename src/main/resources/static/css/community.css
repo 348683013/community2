@@ -69,7 +69,20 @@ body {
     cursor: pointer;
 }
 
+.menu1 .active {
+    color: #499ef3;
+}
+
 .menu1 .icon:hover {
+    color: #499ef3;
+}
+
+.menu1 .comment-icon {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.menu1 .comment-icon:hover {
     color: #499ef3;
 }
 
@@ -79,15 +92,27 @@ body {
     border-bottom: 1px solid #eee;
 }
 
-.question-title{
+.sub-comments {
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #eee;
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+
+.sub-comments .btn {
+    margin: 7px 0;
+}
+
+.question-title {
     margin-top: 25px;
 }
 
-.index-question-title{
+.index-question-title {
     margin-top: -7px;
 }
 
-.index-question-last{
+.index-question-last {
     margin-top: 3px;
     margin-bottom: -1px;
 }
