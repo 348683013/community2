@@ -36,7 +36,6 @@ body {
 }
 */
 .community-menu {
-    display: block;
     color: #999;
     font-size: 13px;
     margin-bottom: 15px;
@@ -115,4 +114,28 @@ body {
 .index-question-last {
     margin-top: 3px;
     margin-bottom: -1px;
+}
+
+.two-comment-time{
+    color: #999999;
+}
+
+.question-tag{
+    margin-right: 3px;
+}
+
+.question-related{
+    padding-left: 3px;
+    list-style: none;
+    line-height: 25px;
+}
+
+.y-line{
+    border-right: 1px solid #eee;
+}
+
+.publish-tag-tab{
+    display: none;
+    margin-top: 5px;
+    padding-top: 5px;
 }

@@ -87,7 +87,7 @@ function collapseComments(e) {
                     })).append($("<div/>", {
                         "class": "menu"
                     }).append($("<span/>", {
-                        "class": "pull-right",
+                        "class": "pull-right two-comment-time",
                         "html": moment(comment.gmtCreate).format('YYYY-MM-DD')
                     })));
 
@@ -111,4 +111,22 @@ function collapseComments(e) {
             });
         }
     }
+}
+
+function selectTag(e) {
+    var value = e.getAttribute("data-tag");
+    var previous = $("#tag").val();
+
+    if (previous.indexOf(value) == -1) {
+        if (previous) {
+            $("#tag").val(previous + ',' + value);
+        } else {
+            $("#tag").val(value);
+        }
+    }
+
+}
+
+function showSelectTag() {
+    $("#select-tag").show();
 }
